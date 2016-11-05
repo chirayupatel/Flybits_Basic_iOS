@@ -41,5 +41,13 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSMotionUsageDescription</key>
+	<string>This app uses motion data to provide additional content based on your activity.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>This app uses your events data to provide additional content based on your availability.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app uses your location to provide additional data depending on your location.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This app uses iBeacon to provide additional data.</string>
 </dict>
 </plist>

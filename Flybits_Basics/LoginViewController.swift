@@ -19,6 +19,8 @@ class LoginViewController: UIViewController {
     
     private var currentRequest: FlybitsRequest?
     
+    private var ibeaconContextDataProvider: iBeaconDataProvider?
+    
     //MARK: - View Controller setup -
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,12 +29,49 @@ class LoginViewController: UIViewController {
 
     //MARK: - Contexts -
     private func enableContexts() {
+        let fiveMins = 1 * 5
         
+        let cm = ContextManager.sharedManager
+        _ = cm.register(.activity, priority: .any, pollFrequency: fiveMins, uploadFrequency: fiveMins)
+        _ = cm.register(.audio, priority: .any, pollFrequency: fiveMins, uploadFrequency: fiveMins)
+        _ = cm.register(.availability, priority: .any, pollFrequency: fiveMins, uploadFrequency: fiveMins)
+        _ = cm.register(.battery, priority: .any, pollFrequency: fiveMins, uploadFrequency: fiveMins)
+        _ = cm.register(.coreLocation, priority: .any, pollFrequency: fiveMins, uploadFrequency: fiveMins)
+        // _ = cm.register(.iBeacon, priority: .any, pollFrequency: fiveMins, uploadFrequency: fiveMins)
+        
+        do {
+            let coreLoc = CoreLocationDataProvider.init(asCoreLocationManager: true, withRequiredAuthorization: .authorizedAlways)
+            _ = try? coreLoc.requestAlwaysAuthorization()
+            
+            let options = Set<iBeaconDataProvider.iBeaconOptions>.init(arrayLiteral: .monitoring, .ranging)
+            let ibeacon = iBeaconDataProvider.init(apiFrequency: 10, locationProvider: coreLoc, options: options)
+            
+            _ = try? cm.register(ibeacon)
+            
+            ibeaconContextDataProvider = ibeacon
+        }
+
+        cm.startDataPolling()
     }
     
     private func disableContexts() {
+        let cm = ContextManager.sharedManager
+        cm.stopDataPolling()
+ 
+        _ = cm.remove(.activity)
+        _ = cm.remove(.audio)
+        _ = cm.remove(.availability)
+        _ = cm.remove(.battery)
+        _ = cm.remove(.coreLocation)
+        
+        // _ = cm.remove(.iBeacon)
+        
+        if let ibeaconContextDataProvider = ibeaconContextDataProvider {
+            _ = cm.remove(ibeaconContextDataProvider)
+        }
         
     }
+    // MARK:
     
     private func displayError(message: String) {
         print(message)
@@ -58,11 +97,10 @@ class LoginViewController: UIViewController {
     
     private func loginFinished(user: User?, error: NSError?) {
         OperationQueue.main.addOperation {
-            
             guard let _ = user else {
-//                print("localizedDescription", error?.localizedDescription ?? "")
-//                print("localizedFailureReason", error?.localizedFailureReason ?? "")
-//                print("localizedRecoveryOptions", error?.localizedRecoveryOptions ?? "")
+                // print("localizedDescription", error?.localizedDescription ?? "")
+                // print("localizedFailureReason", error?.localizedFailureReason ?? "")
+                // print("localizedRecoveryOptions", error?.localizedRecoveryOptions ?? "")
                 print("localizedRecoverySuggestion", error?.localizedRecoverySuggestion ?? "")
                 self.displayError(message:  error?.localizedFailureReason ?? "Login failed")
                 return
