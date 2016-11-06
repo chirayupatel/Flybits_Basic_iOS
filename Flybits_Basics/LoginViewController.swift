@@ -29,7 +29,7 @@ class LoginViewController: UIViewController {
 
     //MARK: - Contexts -
     private func enableContexts() {
-        let fiveMins = 1 * 5
+        let fiveMins = 1 * 60
         
         let cm = ContextManager.sharedManager
         _ = cm.register(.activity, priority: .any, pollFrequency: fiveMins, uploadFrequency: fiveMins)
@@ -39,12 +39,13 @@ class LoginViewController: UIViewController {
         _ = cm.register(.coreLocation, priority: .any, pollFrequency: fiveMins, uploadFrequency: fiveMins)
         // _ = cm.register(.iBeacon, priority: .any, pollFrequency: fiveMins, uploadFrequency: fiveMins)
         
-        do {
+        do {   // enable iBeacon context provider
             let coreLoc = CoreLocationDataProvider.init(asCoreLocationManager: true, withRequiredAuthorization: .authorizedAlways)
             _ = try? coreLoc.requestAlwaysAuthorization()
             
             let options = Set<iBeaconDataProvider.iBeaconOptions>.init(arrayLiteral: .monitoring, .ranging)
-            let ibeacon = iBeaconDataProvider.init(apiFrequency: 10, locationProvider: coreLoc, options: options)
+            let ibeacon = iBeaconDataProvider.init(apiFrequency: fiveMins, locationProvider: coreLoc, options: options)
+            ibeacon.startBeaconQuery()
             
             _ = try? cm.register(ibeacon)
             
