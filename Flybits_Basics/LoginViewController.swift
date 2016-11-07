@@ -74,8 +74,44 @@ class LoginViewController: UIViewController {
     }
     // MARK:
     
+    // MARK: Register For Push
+    private func enablePush() {
+        /*
+        let apnsToken = apnsTokenReturnedByApple
+        PushManager.sharedManager.configuration = PushConfiguration.configuration(with: .both, apnsToken: apnsToken, autoFetchData: true)
+         */
+        PushManager.sharedManager.configuration = PushConfiguration.configuration(with: .foreground)
+    }
+    
+    private func disablePush() {
+        PushManager.sharedManager.configuration = PushConfiguration.configuration(with: .none)
+    }
+    
     private func displayError(message: String) {
         print(message)
+    }
+    
+    private func registerForPushStatus() {
+        
+        // remove any previously registered observers
+        NotificationCenter.default.removeObserver(self, name: PushManagerConstants.PushConnected, object: nil)
+        NotificationCenter.default.removeObserver(self, name: PushManagerConstants.PushDisconnected, object: nil)
+        
+        // register for push status
+        NotificationCenter.default.addObserver(forName: PushManagerConstants.PushConnected, object: nil, queue: nil) { n in
+            print(n.name.rawValue)
+        }
+        
+        NotificationCenter.default.addObserver(forName: PushManagerConstants.PushDisconnected, object: nil, queue: nil) { n in
+            print(n.name.rawValue)
+        }
+
+        /*
+        // for APNs token
+        NotificationCenter.default.addObserver(forName: PushManagerConstants.PushTokenUpdated, object: nil, queue: nil) {
+            print(n)
+        }
+         */
     }
 
     //MARK: - User session management -
@@ -111,11 +147,16 @@ class LoginViewController: UIViewController {
             precondition(Session.sharedInstance.currentUser != nil, "User is not logged in?")
             
             self.enableContexts()
+            self.registerForPushStatus()
+            self.enablePush()
+            self.performSegue(withIdentifier: "display_zones", sender: self)
         }
     }
 
     private func logoutFinished() {
         precondition(Session.sharedInstance.currentUser == nil, "User is logged out, but has a 'currentUser' set")
+        self.disableContexts()
+        self.disablePush()
     }
     
     private func doLogout() {
