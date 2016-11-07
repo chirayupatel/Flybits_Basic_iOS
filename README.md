@@ -1,21 +1,25 @@
-Flybits Basics for iOS
-Note: This code is built with FlybitsSDK 3.2
+#Flybits Basics for iOS#
+
+_Note: This code is built with FlybitsSDK 3.2_
 
 This project demonstrates basic functionality such as register/login, get zones & moments, and registering and receiving push messages.
 
-User management
-LoginViewController displays a login page where user can enter their email and password to login or they can anonymously login. Anonymous login creates a temp email and password and stores it inside NSUserDefaults, and uses that to login.
+##User management##
+
+`LoginViewController` displays a login page where user can enter their email and password to login or they can anonymously login. Anonymous login creates a temp email and password and stores it inside NSUserDefaults, and uses that to login.
 
 Logout button is also available, tapping on it makes a logout request to server.
 
 After user is successfully logged in, few things are enabled:
 
-context uploading
-push message
-1. Context Uploading:
+- context uploading
+- push message
+
+####1. Context Uploading:####
 
 Few context plugins are registered with default settings:
-
+	
+```
 let fiveMins = 5 * 60
     
 let cm = ContextManager.sharedManager
@@ -24,8 +28,12 @@ _ = cm.register(.audio, priority: .any, pollFrequency: fiveMins, uploadFrequency
 _ = cm.register(.availability, priority: .any, pollFrequency: fiveMins, uploadFrequency: fiveMins)
 _ = cm.register(.battery, priority: .any, pollFrequency: fiveMins, uploadFrequency: fiveMins)
 _ = cm.register(.coreLocation, priority: .any, pollFrequency: fiveMins, uploadFrequency: fiveMins)
+```
+
+
 iBeacon plugin is registered with custom settings:
 
+```
 do {   // enable iBeacon context provider
     let coreLoc = CoreLocationDataProvider.init(asCoreLocationManager: true, withRequiredAuthorization: .authorizedAlways)
     _ = try? coreLoc.requestAlwaysAuthorization()
@@ -38,15 +46,23 @@ do {   // enable iBeacon context provider
     
     ibeaconContextDataProvider = ibeacon
 }
+```
+
 After everythign is registered, start the context monitoring and uploading:
 
+```
 cm.startDataPolling()
-2. Registering for Push Message:
+
+```
+
+
+####2. Registering for Push Message:####
 
 PushManager posts notification everytime it's status changes with Flybits Push server. Those can be listened by the apps as well:
 
 Connected and Disconnected can be listened to update the UI or change the logic on your app, maybe switch to Polling if push is disconnected.
 
+```
 // register for push status
 NotificationCenter.default.addObserver(forName: PushManagerConstants.PushConnected, object: nil, queue: nil) { n in
     print(n.name.rawValue)
@@ -55,39 +71,52 @@ NotificationCenter.default.addObserver(forName: PushManagerConstants.PushConnect
 NotificationCenter.default.addObserver(forName: PushManagerConstants.PushDisconnected, object: nil, queue: nil) { n in
     print(n.name.rawValue)
 }
+```
+
+
 To setup the FlybitsSDK so it can start receiving push messages, you have to enable the PushManager with a PushConfiguration.
 
 To listen to entity related changes such as Zone modified, Moment modified, etc., enable 'foreground' push service type.
 
-PushManager.sharedManager.configuration = PushConfiguration.configuration(with: .foreground)
+`        PushManager.sharedManager.configuration = PushConfiguration.configuration(with: .foreground)
+`
 
-Use .both if you are also supporting APNs as well. Remember to set the apnsToken after user successfully logs in so it can be uploaded to Flybits servers.
+Use `.both` if you are also supporting APNs as well. Remember to set the `apnsToken` after user successfully logs in so it can be uploaded to Flybits servers.
 
-Zones
-Getting list of Zones
 
-ZoneViewController queries the server and displays list of Zones in a UITableView. Setup a ZoneQuery object and then execute that query using ZoneRequest.
+
+##Zones##
+
+####Getting list of Zones###
+`ZoneViewController` queries the server and displays list of Zones in a UITableView. Setup a `ZoneQuery` object and then execute that query using `ZoneRequest`.
 
 This example shows how to get first 20 zones that are favourited by currently logged in user.
 
+```
 let zoneQuery = ZonesQuery.init()
 zoneQuery.pager = Pager.init(limit: 20, offset: 0, countRecords: nil)
 zoneQuery.pager.favourites = true
     
 ZoneRequest.query(zoneQuery) { [weak self] (zones, pager, error) in
-    print(zones)    
+	print(zones)    
 }.execute()
-Zone related Push
+```
 
+
+####Zone related Push####
 Subscribe each zone entities for push message:
 
+```
 private func registerForPush() {
     for z in zones {
         z.subscribeToPush()
     }
 }
+```
+
 and then using a custom extension on NotificationCenter, listen to few different topics so we can act upon receiving a push:
 
+```
 
 let modified = PushMessage.NotificationType(.zone, action: .modified)
 let removed = PushMessage.NotificationType(.zone, action: .deleted)
@@ -115,13 +144,17 @@ NotificationCenter.default.addObserver(forNames: PushManagerConstants.PushConnec
     default: print("Received push but not handling it: ", n.name)
     }
 }
-Moments
-Getting list of Moments
 
-MomentViewController queries the server for all the moments inside a zone and displays list of Moments in a UITableView. Setup a MomentQuery object and then execute that query using MomentRequest.
+```
+
+##Moments##
+
+####Getting list of Moments###
+`MomentViewController` queries the server for all the moments inside a zone and displays list of Moments in a UITableView. Setup a `MomentQuery` object and then execute that query using `MomentRequest`.
 
 This example shows how to get first 20 moemnts inside a zone.
 
+```
 private func getMoments() {
     // query the server for 20 moments
     let query = MomentQuery.init()
@@ -139,17 +172,24 @@ private func getMoments() {
         }
     }.execute()
 }
-Moment related Push
 
+```
+
+
+####Moment related Push####
 Subscribe each moment entities for push message:
 
+```
 private func registerForPush() {
     for m in moments {
         m.subscribeToPush()
     }
 }
+```
+
 and then using a custom extension on NotificationCenter, listen to few different topics so we can act upon receiving a push:
 
+```
 
 do {
     // register for different push topics to listn
@@ -206,3 +246,6 @@ do {
         }
     }
 }
+
+```
+
