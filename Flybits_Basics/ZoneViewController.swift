@@ -18,35 +18,37 @@ class ZoneViewController: UITableViewController {
         
         getZones()
         
-        // after push is connected, register all the zones for push
-        NotificationCenter.default.addObserver(forName: PushManagerConstants.PushConnected, object: nil, queue: nil) { [weak self] n in
-            self?.registerForPush()
-        }
-
         let modified = PushMessage.NotificationType(.zone, action: .modified)
-        NotificationCenter.default.addObserver(forName: modified, object: nil, queue: nil) { [weak self] n in
-            print(n)
-            // let m = n.userInfo?[PushManagerConstants.PushMessageContent] as? PushMessage
-            if let z = n.userInfo?[PushManagerConstants.PushFetchedContent] as? Zone {
-                self?.zoneReceivedPush(zone: z)
-            } else if let e = n.userInfo?[PushManagerConstants.PushFetchError] as? NSError {
-                if let m = n.userInfo?[PushManagerConstants.PushMessageContent] as? PushMessage, let zoneId = m.body?["id"] as? String, e.code == 404 {
+        let removed = PushMessage.NotificationType(.zone, action: .deleted)
+        NotificationCenter.default.addObserver(forNames: PushManagerConstants.PushConnected) { [weak self] n in
+            switch n.name {
+            case PushManagerConstants.PushConnected:
+                // after push is connected, register all the zones for push
+                self?.registerForPush()
+                
+            case modified:
+                print(n)
+                // let m = n.userInfo?[PushManagerConstants.PushMessageContent] as? PushMessage
+                if let z = n.userInfo?[PushManagerConstants.PushFetchedContent] as? Zone {
+                    self?.zoneReceivedPush(zone: z)
+                } else if let e = n.userInfo?[PushManagerConstants.PushFetchError] as? NSError {
+                    if let m = n.userInfo?[PushManagerConstants.PushMessageContent] as? PushMessage, let zoneId = m.body?["id"] as? String, e.code == 404 {
+                        self?.zoneRemoved(zoneIdentifier: zoneId)
+                    }
+                }
+            case removed:
+                // when a zone is removed.. note that unpublishing a zone is not same as removing it...
+                if let m = n.userInfo?[PushManagerConstants.PushMessageContent] as? PushMessage, let zoneId = m.body?["id"] as? String {
                     self?.zoneRemoved(zoneIdentifier: zoneId)
                 }
+            default: print("Received push but not handling it: ", n.name)
             }
         }
-        
-        // when a zone is removed.. note that unpublishing a zone is not same as removing it...
-        let removed = PushMessage.NotificationType(.zone, action: .deleted)
-        NotificationCenter.default.addObserver(forName: removed, object: nil, queue: nil) { [weak self] n in
-            if let m = n.userInfo?[PushManagerConstants.PushMessageContent] as? PushMessage, let zoneId = m.body?["id"] as? String {
-                self?.zoneRemoved(zoneIdentifier: zoneId)
-            }
-        }
-        
-
     }
+    
     private func zoneRemoved(zoneIdentifier: String) {
+        // when a zone is removed, we only get their ID, so remove the zone from our list of zones
+        // and then update the UI
         for z in self.zones.enumerated() where z.element.identifier == zoneIdentifier {
             self.zones.remove(at: z.offset)
             self.tableView.deleteRows(at: [IndexPath.init(row: z.offset, section: 0)], with: .automatic)
@@ -119,11 +121,24 @@ class ZoneViewController: UITableViewController {
         }.execute()
     }
     
+    //MARK: Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let id = segue.identifier, id == "display_moments",
+            let cell = sender as? UITableViewCell,
+            let index = tableView.indexPath(for: cell) {
+            
+            let item = zones[index.row]
+            let mVC = segue.destination as? MomentViewController
+            mVC?.zoneId = item.identifier
+        }
+    }
+    
     //MARK: Handle Zone changes Push messages
     private func registerForPush() {
         for z in zones {
             z.subscribeToPush()
         }
     }
+    
 }
 

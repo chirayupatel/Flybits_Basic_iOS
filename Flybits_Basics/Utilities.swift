@@ -10,9 +10,12 @@ import Foundation
 import FlybitsSDK
 
 /*
- Anonymous Login
+    Anonymous Login API
  */
 extension SessionRequest {
+    // This will register a temporary account, and stores the information on the current device. 
+    // Next time, reuses the same account. Note: Stores it inside UserDefaults, instead of Keychain,
+    // NOTE: This will be added to FlybitSDK on one of the future version of FlybitsSDK.
     static func AnonymousLogin(completion: @escaping (_ user: User?, _ error: NSError?) -> Void) -> Requestable? {
         guard let data = getSavedLoginData() else {
             _ = createNewAccount { (user, password, error) in
@@ -35,6 +38,8 @@ extension SessionRequest {
         let account = AccountQuery.init()
         account.email = email
         account.password = password
+        account.firstname = "Anonymous"
+        account.lastname = "Anonymous"
         
         let req = AccountRequest.register(account) { (user, error) in
             guard error == nil else {
@@ -78,5 +83,16 @@ fileprivate enum AnonymousLoginError : Int {
     
     var nsError: NSError? {
         return NSError.init(domain: "com.flybits.anonymous", code: self.rawValue, userInfo: [NSLocalizedDescriptionKey: "Error creating anonymouse account"])
+    }
+}
+
+
+
+public extension NotificationCenter {
+    // add a single observer for multiple names, and then calls the block when a notification is received
+    public func addObserver(forNames names: Notification.Name..., using block: @escaping (Notification) -> Void) {
+        for n in names {
+            addObserver(forName: n, object: nil, queue: nil, using: block)
+        }
     }
 }

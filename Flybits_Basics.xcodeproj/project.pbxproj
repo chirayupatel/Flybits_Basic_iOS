@@ -17,6 +17,7 @@
 		F2B3E1281DCA5C450071FA91 /* FlybitsSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F2B3E1251DCA5C450071FA91 /* FlybitsSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F2B3E1291DCA5C450071FA91 /* MQTTFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2B3E1261DCA5C450071FA91 /* MQTTFramework.framework */; };
 		F2B3E12A1DCA5C450071FA91 /* MQTTFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F2B3E1261DCA5C450071FA91 /* MQTTFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F2B626221DD0144900206EA1 /* MomentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B626211DD0144900206EA1 /* MomentViewController.swift */; };
 		F2C814761DCF8B9700FAD5B1 /* ZoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C814751DCF8B9700FAD5B1 /* ZoneViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		F2B3E11F1DCA5C370071FA91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2B3E1251DCA5C450071FA91 /* FlybitsSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FlybitsSDK.framework; sourceTree = "<group>"; };
 		F2B3E1261DCA5C450071FA91 /* MQTTFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MQTTFramework.framework; sourceTree = "<group>"; };
+		F2B626211DD0144900206EA1 /* MomentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentViewController.swift; sourceTree = "<group>"; };
 		F2C814751DCF8B9700FAD5B1 /* ZoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoneViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,6 +93,7 @@
 				F2B3E11C1DCA5C370071FA91 /* LaunchScreen.storyboard */,
 				F2B3E11F1DCA5C370071FA91 /* Info.plist */,
 				F2C814751DCF8B9700FAD5B1 /* ZoneViewController.swift */,
+				F2B626211DD0144900206EA1 /* MomentViewController.swift */,
 			);
 			path = Flybits_Basics;
 			sourceTree = "<group>";
@@ -171,6 +174,7 @@
 			files = (
 				F202A10F1DCBE7D300D3B20C /* Utilities.swift in Sources */,
 				F2B3E1161DCA5C370071FA91 /* LoginViewController.swift in Sources */,
+				F2B626221DD0144900206EA1 /* MomentViewController.swift in Sources */,
 				F2C814761DCF8B9700FAD5B1 /* ZoneViewController.swift in Sources */,
 				F2B3E1141DCA5C370071FA91 /* AppDelegate.swift in Sources */,
 			);
