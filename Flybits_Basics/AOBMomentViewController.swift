@@ -104,7 +104,7 @@ class Profile: Parsable, AOBContentType, CustomStringConvertible {
             return nil
         }
         
-        firstname = d.jsonObject("firstname") ?? "n/a"
+        firstname = d.jsonObject("firstname") ?? "nil"
         lastname = d.jsonObject("lastname")
         address = d.jsonObject("address")
     }

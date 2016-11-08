@@ -60,7 +60,7 @@ public class AOBContentBaseData: NSObject, ResponseObjectSerializable {
     
     public override var description: String {
         return localized.map({
-            return "\($0.key):\($0.value)"
+            return "\($0.key):\n\($0.value)"
         }).joined(separator: "\n")
     }
 }
