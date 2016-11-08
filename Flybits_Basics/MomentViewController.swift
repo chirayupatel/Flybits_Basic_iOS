@@ -147,6 +147,17 @@ class MomentViewController: UITableViewController {
         }.execute()
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let id = segue.identifier, id == "display_aob",
+            let cell = sender as? UITableViewCell,
+            let index = tableView.indexPath(for: cell) {
+            
+            let item = moments[index.row]
+            let mVC = segue.destination as? AOBMomentViewController
+            mVC?.moment = item
+        }
+    }
+
 
     // MARK: - Table view data source
 

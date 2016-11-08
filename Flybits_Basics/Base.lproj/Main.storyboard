@@ -250,6 +250,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="R1K-WL-Dpd" kind="show" identifier="display_aob" id="A3P-nh-Vlb"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -261,6 +264,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KeR-l6-iPJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2466" y="105"/>
+        </scene>
+        <!--Moment View Controller-->
+        <scene sceneID="FBg-uv-rkq">
+            <objects>
+                <viewController storyboardIdentifier="aobMoment" id="R1K-WL-Dpd" customClass="AOBMomentViewController" customModule="Flybits_Basics" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eTr-Hn-2QM"/>
+                        <viewControllerLayoutGuide type="bottom" id="e1d-Hg-yIW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7BO-Na-fez">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ZTL-nk-s9e">
+                                <rect key="frame" x="16" y="72" width="348" height="575"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZTL-nk-s9e" firstAttribute="leading" secondItem="7BO-Na-fez" secondAttribute="leadingMargin" id="5Hf-qE-5uU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZTL-nk-s9e" secondAttribute="trailing" constant="-5" id="BuT-8C-mLx"/>
+                            <constraint firstAttribute="bottom" secondItem="ZTL-nk-s9e" secondAttribute="bottom" constant="20" symbolic="YES" id="gFj-VH-FR3"/>
+                            <constraint firstItem="ZTL-nk-s9e" firstAttribute="top" secondItem="eTr-Hn-2QM" secondAttribute="bottom" constant="8" symbolic="YES" id="qxo-sj-0Cp"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="textView" destination="ZTL-nk-s9e" id="CkC-Td-zF4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eNf-Pz-w9j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3295.1999999999998" y="108.39580209895054"/>
         </scene>
     </scenes>
 </document>
