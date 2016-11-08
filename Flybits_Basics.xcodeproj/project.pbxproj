@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F202A10F1DCBE7D300D3B20C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F202A10E1DCBE7D300D3B20C /* Utilities.swift */; };
+		F27A8DAD1DD24D2C0077FFD9 /* CustomContextProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27A8DAC1DD24D2C0077FFD9 /* CustomContextProvider.swift */; };
 		F2B3E1141DCA5C370071FA91 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B3E1131DCA5C370071FA91 /* AppDelegate.swift */; };
 		F2B3E1161DCA5C370071FA91 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B3E1151DCA5C370071FA91 /* LoginViewController.swift */; };
 		F2B3E1191DCA5C370071FA91 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2B3E1171DCA5C370071FA91 /* Main.storyboard */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		F202A10E1DCBE7D300D3B20C /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		F27A8DAC1DD24D2C0077FFD9 /* CustomContextProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomContextProvider.swift; sourceTree = "<group>"; };
 		F2B3E1101DCA5C370071FA91 /* Flybits_Basics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flybits_Basics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2B3E1131DCA5C370071FA91 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2B3E1151DCA5C370071FA91 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +70,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F27A8DAB1DD24D110077FFD9 /* Custom Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				F27A8DAC1DD24D2C0077FFD9 /* CustomContextProvider.swift */,
+			);
+			name = "Custom Plugins";
+			sourceTree = "<group>";
+		};
 		F2B3E1071DCA5C370071FA91 = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +99,7 @@
 		F2B3E1121DCA5C370071FA91 /* Flybits_Basics */ = {
 			isa = PBXGroup;
 			children = (
+				F27A8DAB1DD24D110077FFD9 /* Custom Plugins */,
 				F202A10E1DCBE7D300D3B20C /* Utilities.swift */,
 				F2B3E1131DCA5C370071FA91 /* AppDelegate.swift */,
 				F2B3E1151DCA5C370071FA91 /* LoginViewController.swift */,
@@ -179,6 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F202A10F1DCBE7D300D3B20C /* Utilities.swift in Sources */,
+				F27A8DAD1DD24D2C0077FFD9 /* CustomContextProvider.swift in Sources */,
 				F2B3E1161DCA5C370071FA91 /* LoginViewController.swift in Sources */,
 				F2B626221DD0144900206EA1 /* MomentViewController.swift in Sources */,
 				F2E0BFA11DD125E700C36D60 /* AOBMomentViewController.swift in Sources */,

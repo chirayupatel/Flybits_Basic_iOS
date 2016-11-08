@@ -20,6 +20,8 @@ class LoginViewController: UIViewController {
     private var currentRequest: FlybitsRequest?
     
     private var ibeaconContextDataProvider: iBeaconDataProvider?
+    private var customStringContextDataProvider = CustomStringContextProvider.init()
+    private var customNumberContextDataProvider = CustomNumberContextProvider.init()
     
     //MARK: - View Controller setup -
     override func viewDidLoad() {
@@ -51,6 +53,11 @@ class LoginViewController: UIViewController {
             
             ibeaconContextDataProvider = ibeacon
         }
+        
+        do {
+            _ = try? cm.register(self.customNumberContextDataProvider)
+            _ = try? cm.register(self.customStringContextDataProvider)
+        }
 
         cm.startDataPolling()
     }
@@ -70,6 +77,9 @@ class LoginViewController: UIViewController {
         if let ibeaconContextDataProvider = ibeaconContextDataProvider {
             _ = cm.remove(ibeaconContextDataProvider)
         }
+        
+        cm.remove(self.customNumberContextDataProvider)
+        cm.remove(self.customStringContextDataProvider)
         
     }
     // MARK:
