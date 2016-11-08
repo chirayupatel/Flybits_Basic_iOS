@@ -29,22 +29,22 @@ class LoginViewController: UIViewController {
 
     //MARK: - Contexts -
     private func enableContexts() {
-        let fiveMins = 1 * 60
+        let freq = 1 * 60
         
         let cm = ContextManager.sharedManager
-        _ = cm.register(.activity, priority: .any, pollFrequency: fiveMins, uploadFrequency: fiveMins)
-        _ = cm.register(.audio, priority: .any, pollFrequency: fiveMins, uploadFrequency: fiveMins)
-        _ = cm.register(.availability, priority: .any, pollFrequency: fiveMins, uploadFrequency: fiveMins)
-        _ = cm.register(.battery, priority: .any, pollFrequency: fiveMins, uploadFrequency: fiveMins)
-        _ = cm.register(.coreLocation, priority: .any, pollFrequency: fiveMins, uploadFrequency: fiveMins)
-        // _ = cm.register(.iBeacon, priority: .any, pollFrequency: fiveMins, uploadFrequency: fiveMins)
+        _ = cm.register(.activity, priority: .any, pollFrequency: freq, uploadFrequency: freq)
+        _ = cm.register(.audio, priority: .any, pollFrequency: freq, uploadFrequency: freq)
+        _ = cm.register(.availability, priority: .any, pollFrequency: freq, uploadFrequency: freq)
+        _ = cm.register(.battery, priority: .any, pollFrequency: freq, uploadFrequency: freq)
+        _ = cm.register(.coreLocation, priority: .any, pollFrequency: freq, uploadFrequency: freq)
+        // _ = cm.register(.iBeacon, priority: .any, pollFrequency: freq, uploadFrequency: freq)
         
         do {   // enable iBeacon context provider
             let coreLoc = CoreLocationDataProvider.init(asCoreLocationManager: true, withRequiredAuthorization: .authorizedAlways)
             _ = try? coreLoc.requestAlwaysAuthorization()
             
             let options = Set<iBeaconDataProvider.iBeaconOptions>.init(arrayLiteral: .monitoring, .ranging)
-            let ibeacon = iBeaconDataProvider.init(apiFrequency: fiveMins, locationProvider: coreLoc, options: options)
+            let ibeacon = iBeaconDataProvider.init(apiFrequency: freq, locationProvider: coreLoc, options: options)
             ibeacon.startBeaconQuery()
             
             _ = try? cm.register(ibeacon)
