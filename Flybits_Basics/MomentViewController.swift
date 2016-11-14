@@ -25,13 +25,20 @@ class MomentViewController: UITableViewController {
             let modified = PushMessage.NotificationType(.zone, action: .momentModified)
             let removed = PushMessage.NotificationType(.zone, action: .momentDeleted)
             let momentInstanceModified = PushMessage.NotificationType(.momentInstance, action: .modified)
+            let rule = PushMessage.NotificationType(.zone, action: .momentRuleUpdated)
+            let rule2 = PushMessage.NotificationType(.zone, action: .momentRuleAssociated)
+            let rule3 = PushMessage.NotificationType(.zone, action: .momentRuleDisassociated)
+            NotificationCenter.default.addObserver(forName: nil, object: PushManager.sharedManager, queue: nil, using: { (n) in
+                print(n.name)
+                NSLog("\(n.name._rawValue)")
+            })
             
             // when FlybitsSDK receives push message, it will post those notification... and the closure passed in here will be 
             // called for different topics we register.
-            NotificationCenter.default.addObserver(forNames: modified, removed, momentInstanceModified) { [weak self] (n) in
+            NotificationCenter.default.addObserver(forNames: modified, removed, momentInstanceModified, rule, rule2, rule3) { [weak self] (n) in
                 // get the PushMessage from userInfo
                 let pushMessage = n.userInfo?[PushManagerConstants.PushMessageContent] as? PushMessage
-                
+                print(n.name)
                 // find which message called this closure
                 switch n.name {
                 case connected: // after push is connected, register all the zones for push
@@ -70,6 +77,8 @@ class MomentViewController: UITableViewController {
                         // moment is no longer available to us
                         self?.momentRemoved(momentIdentifier: identifier)
                     }
+                case rule, rule2, rule3:
+                    self?.getMoments()
                 default: print("Received push but not handling it: ", n.name)
                 }
             }

@@ -150,6 +150,11 @@
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = CH9YG7X49H;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -327,6 +332,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Flybits_Basics/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.flybits.Flybits-Basics";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -344,6 +350,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Flybits_Basics/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.flybits.Flybits-Basics";
 				PRODUCT_NAME = "$(TARGET_NAME)";

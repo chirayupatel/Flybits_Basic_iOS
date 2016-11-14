@@ -20,6 +20,17 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCalendarsUsageDescription</key>
+	<string>This app uses your events data to provide additional content based on your availability.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This app uses iBeacon to provide additional data.</string>
+	<key>NSMotionUsageDescription</key>
+	<string>This app uses motion data to provide additional content based on your activity.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>location</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -41,13 +52,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSMotionUsageDescription</key>
-	<string>This app uses motion data to provide additional content based on your activity.</string>
-	<key>NSCalendarsUsageDescription</key>
-	<string>This app uses your events data to provide additional content based on your availability.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app uses your location to provide additional data depending on your location.</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>This app uses iBeacon to provide additional data.</string>
 </dict>
 </plist>
