@@ -1,0 +1,8 @@
+{
+    "configurable_version": "1",
+    "com.flybits.sdk.configurables": {
+        "flybits_logo_path": "https://dl.dropboxusercontent.com/s/0ne9zg791g2ca3v/Icon-60%403x.png",
+        "mobile_api_key": "{{mobile_api_key_uuid}}",
+        "third_party_name": "{{company_info_thirdparty_name}}",
+    }
+}
