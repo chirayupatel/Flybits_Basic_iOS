@@ -1,18 +1,9 @@
 #Flybits Basics for iOS#
 
 ####Downloads:####
-[Release Notes](http://developer-workflow.s3.amazonaws.com/sdks/ios-archive/V3.2/FlybitsSDK-v3.2-2016-11-07-96571b0-Release-Notes.html) 
-</br>
-[SDK-All architectures](http://developer-workflow.s3.amazonaws.com/sdks/ios-archive/V3.2/FlybitsSDK-v3.2-2016-11-07-96571b0-Release-Xcode-8.1.zip)
-</br>
-[SDK-Device only architectures](http://developer-workflow.s3.amazonaws.com/sdks/ios-archive/V3.2/FlybitsSDK-v3.2-2016-11-07-96571b0-Release-Xcode-8.1-App-Store.zip)
-</br>
-[Documentation](http://developer-workflow.s3.amazonaws.com/ios_documentation/index.html)
+_Note: This code is built with FlybitsSDK 3.3.0_
 
-
-_Note: This code is built with FlybitsSDK 3.2_
-
-This project demonstrates basic functionality such as register/login, get zones & moments, and registering and receiving push messages.
+This project demonstrates basic functionality of using Flybits such as to register or login, to get zones & moments, and to register and receive push messages.
 
 ##User management##
 

@@ -76,7 +76,6 @@ class ZoneViewController: UITableViewController {
     private func getZones() {
         let zoneQuery = ZonesQuery.init()
         zoneQuery.pager = Pager.init(limit: 20, offset: 0, countRecords: nil)
-        zoneQuery.zoneIDs = ["1BC7E116-7BBE-4856-AD48-BC932311F529"]
         // z.favourites = true
         // z.tagIDs = ["TAGID1"]
         

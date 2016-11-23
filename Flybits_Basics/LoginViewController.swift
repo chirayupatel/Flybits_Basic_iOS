@@ -26,12 +26,18 @@ class LoginViewController: UIViewController {
     //MARK: - View Controller setup -
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Session.sharedInstance.reconnectSession { (status, user, error) in
+            if status {
+                self.loginFinished(user: user, error: error)
+            }
+        }
     }
 
 
     //MARK: - Contexts -
     private func enableContexts() {
-        let freq = 1 * 60
+        let freq = 1 * 10
         
         let cm = ContextManager.sharedManager
         _ = cm.register(.activity, priority: .any, pollFrequency: freq, uploadFrequency: freq)
@@ -47,6 +53,8 @@ class LoginViewController: UIViewController {
             
             let options = Set<iBeaconDataProvider.iBeaconOptions>.init(arrayLiteral: .monitoring, .ranging)
             let ibeacon = iBeaconDataProvider.init(apiFrequency: freq, locationProvider: coreLoc, options: options)
+            ibeacon.pollFrequency = Int32(freq)
+            ibeacon.uploadFrequency = Int32(freq)
             ibeacon.startBeaconQuery()
             
             _ = try? cm.register(ibeacon)
