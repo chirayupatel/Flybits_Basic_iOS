@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7F248D6F1DE4FC2700A0248C /* FlybitsSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F248D6B1DE4FB6A00A0248C /* FlybitsSDK.framework */; };
-		7F248D701DE4FC2700A0248C /* FlybitsSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7F248D6B1DE4FB6A00A0248C /* FlybitsSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		7F248D711DE4FC2700A0248C /* MQTTFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F248D6C1DE4FB6A00A0248C /* MQTTFramework.framework */; };
-		7F248D721DE4FC2700A0248C /* MQTTFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7F248D6C1DE4FB6A00A0248C /* MQTTFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A6ABFA231E671AB900FBB5AB /* FlybitsSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F248D6B1DE4FB6A00A0248C /* FlybitsSDK.framework */; };
+		A6ABFA241E671AB900FBB5AB /* FlybitsSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7F248D6B1DE4FB6A00A0248C /* FlybitsSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A6ABFA251E671AB900FBB5AB /* MQTTFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F248D6C1DE4FB6A00A0248C /* MQTTFramework.framework */; };
+		A6ABFA261E671AB900FBB5AB /* MQTTFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7F248D6C1DE4FB6A00A0248C /* MQTTFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F202A10F1DCBE7D300D3B20C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F202A10E1DCBE7D300D3B20C /* Utilities.swift */; };
 		F27A8DAD1DD24D2C0077FFD9 /* CustomContextProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27A8DAC1DD24D2C0077FFD9 /* CustomContextProvider.swift */; };
 		F2B3E1141DCA5C370071FA91 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B3E1131DCA5C370071FA91 /* AppDelegate.swift */; };
@@ -25,14 +25,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		7F248D671DE4DE1E00A0248C /* Embed Frameworks */ = {
+		A6ABFA271E671AB900FBB5AB /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				7F248D701DE4FC2700A0248C /* FlybitsSDK.framework in Embed Frameworks */,
-				7F248D721DE4FC2700A0248C /* MQTTFramework.framework in Embed Frameworks */,
+				A6ABFA241E671AB900FBB5AB /* FlybitsSDK.framework in Embed Frameworks */,
+				A6ABFA261E671AB900FBB5AB /* MQTTFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -50,7 +50,7 @@
 		F2B3E1181DCA5C370071FA91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F2B3E11A1DCA5C370071FA91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F2B3E11D1DCA5C370071FA91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		F2B3E11F1DCA5C370071FA91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F2B3E11F1DCA5C370071FA91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Flybits_Basics/Info.plist; sourceTree = "<group>"; };
 		F2B626211DD0144900206EA1 /* MomentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentViewController.swift; sourceTree = "<group>"; };
 		F2C814751DCF8B9700FAD5B1 /* ZoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoneViewController.swift; sourceTree = "<group>"; };
 		F2E0BFA01DD125E700C36D60 /* AOBMomentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AOBMomentViewController.swift; sourceTree = "<group>"; tabWidth = 3; };
@@ -62,8 +62,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F248D6F1DE4FC2700A0248C /* FlybitsSDK.framework in Frameworks */,
-				7F248D711DE4FC2700A0248C /* MQTTFramework.framework in Frameworks */,
+				A6ABFA231E671AB900FBB5AB /* FlybitsSDK.framework in Frameworks */,
+				A6ABFA251E671AB900FBB5AB /* MQTTFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +79,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A671A4A41E6718FE0081B792 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F2B3E11F1DCA5C370071FA91 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			path = ..;
+			sourceTree = "<group>";
+		};
 		F27A8DAB1DD24D110077FFD9 /* Custom Plugins */ = {
 			isa = PBXGroup;
 			children = (
@@ -90,8 +99,8 @@
 		F2B3E1071DCA5C370071FA91 = {
 			isa = PBXGroup;
 			children = (
-				7F248D6A1DE4FB5500A0248C /* Frameworks */,
 				F2B3E1121DCA5C370071FA91 /* Flybits_Basics */,
+				7F248D6A1DE4FB5500A0248C /* Frameworks */,
 				F2B3E1111DCA5C370071FA91 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -107,18 +116,18 @@
 		F2B3E1121DCA5C370071FA91 /* Flybits_Basics */ = {
 			isa = PBXGroup;
 			children = (
-				F27A8DAB1DD24D110077FFD9 /* Custom Plugins */,
-				F202A10E1DCBE7D300D3B20C /* Utilities.swift */,
+				F2E0BFA21DD1268300C36D60 /* AOBMoment.swift */,
+				F2E0BFA01DD125E700C36D60 /* AOBMomentViewController.swift */,
 				F2B3E1131DCA5C370071FA91 /* AppDelegate.swift */,
 				F2B3E1151DCA5C370071FA91 /* LoginViewController.swift */,
-				F2B3E1171DCA5C370071FA91 /* Main.storyboard */,
-				F2B3E11A1DCA5C370071FA91 /* Assets.xcassets */,
-				F2B3E11C1DCA5C370071FA91 /* LaunchScreen.storyboard */,
-				F2B3E11F1DCA5C370071FA91 /* Info.plist */,
-				F2C814751DCF8B9700FAD5B1 /* ZoneViewController.swift */,
 				F2B626211DD0144900206EA1 /* MomentViewController.swift */,
-				F2E0BFA01DD125E700C36D60 /* AOBMomentViewController.swift */,
-				F2E0BFA21DD1268300C36D60 /* AOBMoment.swift */,
+				F202A10E1DCBE7D300D3B20C /* Utilities.swift */,
+				F2C814751DCF8B9700FAD5B1 /* ZoneViewController.swift */,
+				F2B3E11A1DCA5C370071FA91 /* Assets.xcassets */,
+				F27A8DAB1DD24D110077FFD9 /* Custom Plugins */,
+				A671A4A41E6718FE0081B792 /* Supporting Files */,
+				F2B3E11C1DCA5C370071FA91 /* LaunchScreen.storyboard */,
+				F2B3E1171DCA5C370071FA91 /* Main.storyboard */,
 			);
 			path = Flybits_Basics;
 			sourceTree = "<group>";
@@ -133,7 +142,7 @@
 				F2B3E10C1DCA5C370071FA91 /* Sources */,
 				F2B3E10D1DCA5C370071FA91 /* Frameworks */,
 				F2B3E10E1DCA5C370071FA91 /* Resources */,
-				7F248D671DE4DE1E00A0248C /* Embed Frameworks */,
+				A6ABFA271E671AB900FBB5AB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -151,7 +160,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = Flybits;
 				TargetAttributes = {
 					F2B3E10F1DCA5C370071FA91 = {
@@ -253,6 +262,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -304,6 +314,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -353,6 +364,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = UN8438TPVK;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
