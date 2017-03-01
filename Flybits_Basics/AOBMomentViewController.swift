@@ -26,7 +26,7 @@ class AOBMomentViewController: UIViewController {
             // go and fetch the data from AOB moment
             getData()
         } else {
-            textView.text = "Not an AOB moment"
+            textView.text = "Only AOB moments are supported for this app."
         }
     }
     
@@ -38,7 +38,7 @@ class AOBMomentViewController: UIViewController {
                 
                 // get the content of this specific moment... and serialize the content to Users class
                 _ = AOBRequest.getData(moment: self.moment, template: Users.self) { (data, error) in
-                    print(data, error)
+                    print(data as Any, error as Any)
                     OperationQueue.main.addOperation {
                         // display the moment's data inside a textview
                         if let error = error {
@@ -49,7 +49,7 @@ class AOBMomentViewController: UIViewController {
                     }
                 }
             } else { // validation failed
-                print(error)
+                print(error as Any)
             }
         }.execute()
     }

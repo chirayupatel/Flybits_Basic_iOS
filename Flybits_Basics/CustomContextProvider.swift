@@ -19,14 +19,14 @@ public class CustomContextProvider: NSObject, ContextDataProvider {
     public override init() {
         super.init()
     }
-    public func refreshData(completion: @escaping ([String : AnyObject], NSError?) -> Void) {
+    public func refreshData(completion: @escaping (Any?, NSError?) -> Void) {
         completion([:], notSetError)
     }
 }
 
 public class CustomNumberContextProvider : CustomContextProvider {
     public var number: NSNumber? = NSNumber.init(value: 32.0)
-    public override func refreshData(completion: @escaping ([String : AnyObject], NSError?) -> Void) {
+    public override func refreshData(completion: @escaping (Any?, NSError?) -> Void) {
         guard let number = number else {
             super.refreshData(completion: completion)
             return
@@ -37,7 +37,7 @@ public class CustomNumberContextProvider : CustomContextProvider {
 
 public class CustomStringContextProvider : CustomContextProvider {
     public var string: String? = "Welcome"
-    public override func refreshData(completion: @escaping ([String : AnyObject], NSError?) -> Void) {
+    public override func refreshData(completion: @escaping (Any?, NSError?) -> Void) {
         guard let string = string else {
             super.refreshData(completion: completion)
             return

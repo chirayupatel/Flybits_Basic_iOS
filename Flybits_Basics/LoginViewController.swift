@@ -27,7 +27,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Session.sharedInstance.reconnectSession { (status, user, error) in
+        _ = Session.sharedInstance.reconnectSession { (status, user, error) in
             if status {
                 self.loginFinished(user: user, error: error)
             }
@@ -37,7 +37,7 @@ class LoginViewController: UIViewController {
 
     //MARK: - Contexts -
     private func enableContexts() {
-        let freq = 1 * 10
+        let freq = 1 * 60
         
         let cm = ContextManager.sharedManager
         _ = cm.register(.activity, priority: .any, pollFrequency: freq, uploadFrequency: freq)
@@ -45,7 +45,6 @@ class LoginViewController: UIViewController {
         _ = cm.register(.availability, priority: .any, pollFrequency: freq, uploadFrequency: freq)
         _ = cm.register(.battery, priority: .any, pollFrequency: freq, uploadFrequency: freq)
         _ = cm.register(.coreLocation, priority: .any, pollFrequency: freq, uploadFrequency: freq)
-        // _ = cm.register(.iBeacon, priority: .any, pollFrequency: freq, uploadFrequency: freq)
         
         do {   // enable iBeacon context provider
             let coreLoc = CoreLocationDataProvider.init(asCoreLocationManager: true, withRequiredAuthorization: .authorizedAlways)
@@ -79,8 +78,6 @@ class LoginViewController: UIViewController {
         _ = cm.remove(.availability)
         _ = cm.remove(.battery)
         _ = cm.remove(.coreLocation)
-        
-        // _ = cm.remove(.iBeacon)
         
         if let ibeaconContextDataProvider = ibeaconContextDataProvider {
             _ = cm.remove(ibeaconContextDataProvider)
