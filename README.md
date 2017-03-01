@@ -1,7 +1,6 @@
 #Flybits Basics for iOS#
 
 ####Downloads:####
-_Note: This code is built with FlybitsSDK 3.3.0_
 
 This project demonstrates basic functionality of using Flybits such as to register or login, to get zones & moments, and to register and receive push messages.
 
